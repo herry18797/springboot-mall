@@ -2,6 +2,7 @@ package com.herry.springbootmall.dao.impl;
 
 import ch.qos.logback.core.model.INamedModel;
 import com.herry.springbootmall.dao.ProductDao;
+import com.herry.springbootmall.dto.ProductRequest;
 import com.herry.springbootmall.model.Product;
 import com.herry.springbootmall.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,13 @@ public class ProductDaoImpl implements ProductDao {
         return null;
 
         }
+
+    }
+
+    @Override
+    public Integer creatProduct(ProductRequest productRequest) {
+
+     return null;
 
     }
 }

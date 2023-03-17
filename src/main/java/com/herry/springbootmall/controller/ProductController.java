@@ -1,13 +1,15 @@
 package com.herry.springbootmall.controller;
 
+import com.herry.springbootmall.dto.ProductRequest;
 import com.herry.springbootmall.model.Product;
 import com.herry.springbootmall.service.ProductService;
+import com.herry.springbootmall.service.impl.productServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
@@ -28,9 +30,17 @@ public class ProductController {
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
-
-
 }
+
+        @PostMapping("/products")
+        public ResponseEntity<Product>createProduct(@RequestBody @Validated ProductRequest productRequest){
+
+        Integer productId=productService.createProduct(productRequest);
+
+        Product product=productService.getProductById(productId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(product);
+        }
+
 
 }
